@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>LMDVR</AssemblyName>
+    <RootNamespace>LMDVR</RootNamespace>
+    <!-- Keep in sync with Mod.Version. -->
+    <Version>1.0.0</Version>
+    <DebugType>embedded</DebugType>
+    <!-- The debug info names source files as /_/..., not by this PC's folders. -->
+    <PathMap>$(MSBuildProjectDirectory)=/_/</PathMap>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <!-- .NET 6 is out of support, but it is what MelonLoader runs IL2CPP mods on. -->
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <!-- Windows-only mod (Direct3D 11, registry lookup for the OpenXR runtime). -->
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+    <GameDir Condition="'$(GameDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Lonely Mountains - Downhill</GameDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(GameDir)\MelonLoader\net6\MelonLoader.dll" Private="false" />
+    <Reference Include="$(GameDir)\MelonLoader\net6\0Harmony.dll" Private="false" />
+    <Reference Include="$(GameDir)\MelonLoader\net6\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="$(GameDir)\MelonLoader\net6\Il2CppInterop.Common.dll" Private="false" />
+    <Reference Include="$(GameDir)\MelonLoader\Il2CppAssemblies\*.dll" Private="false" />
+  </ItemGroup>
+
+</Project>
